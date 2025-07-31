@@ -1,0 +1,111 @@
+import java.util.Scanner;
+import java.util.Random;
+class Athlete{
+    String name;
+    int energy;
+    int skillPower;
+    int maxEnergy;
+    boolean isActive;
+    Athlete()
+    {
+        name = "Player" ;
+        energy = 100 ;
+        skillPower = 10;
+        maxEnergy = 1000;
+        isActive = true;
+    }
+    Athlete(String n , int e, int s){
+        name = n ;
+        energy = e ;
+        skillPower = s;
+        maxEnergy = 1000;
+        isActive = true;
+    }
+    void compete(Athlete opponent)
+    {
+        if(opponent.isActive)
+            opponent.energy -= skillPower;
+        if(opponent.energy<=0)
+            opponent.isActive = false;
+    }
+    void rest(int amount)
+    {
+        energy+=amount;
+    }
+    void train()
+    {
+        Random rand = new Random();
+        skillPower+=rand.nextInt(11);
+    }
+    void displayStats()
+    {
+
+        System.out.println("Name : "+name+"\nEnergy : "+energy+"\nSkill power : "+skillPower+"\nIs Active : "+isActive);
+    }
+
+}
+public class GameAthlete {
+    public static void main(String[] args){
+        String name;
+        int energy,skillPower;
+        Scanner sc = new Scanner(System.in);
+        Athlete[] obj = new Athlete[3];
+        for(int i=0;i<3;i++){
+        System.out.println("Enter Name\nEnergy(200)\nSkill power(50) of player"+(i+1)+" : ");
+        name = sc.next();
+        energy = sc.nextInt();
+        skillPower = sc.nextInt();
+        obj[i] = new Athlete(name,energy,skillPower);
+
+
+        }
+        System.out.println("Menu\nEnter 1 to compete\nEnter 2 to rest\nEnter 3 to train\nEnter 4 to Display Stats\nEnter 5 to exit");
+        while(true)
+        {
+            if( (obj[0].energy !=0) && (obj[1].energy==0) && (obj[2].energy==0))
+                {System.out.println("Player 1 won");
+                break;}
+            if( (obj[1].energy !=0) && (obj[0].energy==0) && (obj[2].energy==0))
+            {System.out.println("Player 2 won");
+                break;}
+            if( (obj[2].energy !=0) && (obj[0].energy==0) && (obj[1].energy==0))
+            {System.out.println("Player 3 won");
+                break;}
+            int c,a;
+            for(int i=0;i<3;i++)
+            {
+                if(obj[i].energy==0)
+                {System.out.println("Player "+(i+1)+" You ran out of energy\nYou lose ");
+                    continue;}
+                System.out.println("Player "+(i+1)+" Enter your choice : ");
+                c = sc.nextInt();
+                if(c==1)
+                {
+                    System.out.println("Enter the no of player to attack(0,1,2) : ");
+                    a = sc.nextInt();
+                    if(i!=a&&a<3)
+                        obj[i].compete(obj[a]);
+                    else
+                        System.out.println("Invalid option");
+                }
+                else if(c==2)
+                {
+                    obj[i].rest(10);
+                    System.out.println("Your current energy : "+obj[i].energy);
+                }
+                else if(c==3)
+                {
+                    obj[i].train();
+                    System.out.println("Your current skill power : "+obj[i].skillPower);
+                }
+                else if(c==4)
+                    obj[i].displayStats();
+                else if(c == 5)
+                    break;
+                else
+                    System.out.println("Invalid option");
+            }
+        }
+
+    }
+}
