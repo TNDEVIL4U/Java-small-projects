@@ -1,6 +1,8 @@
+//A simple java program to make a tournament of athletes by random variable generation
 import java.util.Scanner;
 import java.util.Random;
 class Athlete{
+    static int total_athletes=0;
     String name;
     int energy;
     int skillPower;
@@ -44,13 +46,14 @@ class Athlete{
     }
 
 }
-public class GameAthlete {
+public class Athlete_Arena {
     public static void main(String[] args){
         String name;
         int energy,skillPower;
         Scanner sc = new Scanner(System.in);
         Athlete[] obj = new Athlete[3];
         for(int i=0;i<3;i++){
+            Athlete.total_athletes++;
         System.out.println("Enter Name\nEnergy(200)\nSkill power(50) of player"+(i+1)+" : ");
         name = sc.next();
         energy = sc.nextInt();
@@ -106,6 +109,8 @@ public class GameAthlete {
                     System.out.println("Invalid option");
             }
         }
+        System.out.println("Number of athletes participated so far : "+Athlete.total_athletes);
 
     }
+    
 }
