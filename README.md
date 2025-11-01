@@ -22,6 +22,7 @@ This folder contains a variety of standalone Java programs that demonstrate key 
 - **File Reader Utility** – Reads and prints text file contents using BufferedReader.
 - **Simple Calculator** – GUI-based calculator using Swing (if included).
 - **Bank Account Simulator** – Demonstrates inheritance and encapsulation through banking operations.
+- **Localhost HTTP Server** – A basic HTTP server using `ServerSocket` that handles client requests and sends plain text responses.
 
 ## 💡 Skills Practiced
 
@@ -31,6 +32,7 @@ This folder contains a variety of standalone Java programs that demonstrate key 
 - Exception handling  
 - Basic file I/O  
 - Command-line and simple GUI development
+- Networking fundamentals with sockets
 
 ## 🛠️ How to Run
 
